@@ -46,7 +46,23 @@ class PlantTest {
 	@DisplayName("test Plant entity mapping")
 	void test() {
 		assertNotNull(plant);
-		assertEquals("MysteryPlant", plant.getName());
+		assertEquals("Broccoli", plant.getName());
+		assertEquals(75, plant.getMaxTemp());
+		assertEquals(65, plant.getMinTemp());
+		assertEquals(48, plant.getMaxHeight());
+		assertEquals(18, plant.getMinHeight());
+		assertEquals(100, plant.getMaxHarvestDays());
+		assertEquals(80, plant.getMinHarvestDays());
+		assertEquals(1.5, plant.getMaxInchesWaterPerWeek());
+		assertEquals(1, plant.getMinInchesWaterPerWeek());
+		assertEquals(20, plant.getMaxRootDepth());
+		assertEquals(13, plant.getMinRootDepth());
+		assertEquals(7.0, plant.getMaxSoilPh());
+		assertEquals(6.0, plant.getMinSoilPh());
+		assertEquals(10, plant.getMaxSunlightHours());
+		assertEquals(8, plant.getMinSunlightHours());
+		assertEquals(24, plant.getMaxPlantDistance());
+		assertEquals(12, plant.getMinPlantDistance());
 	}
 
 }
