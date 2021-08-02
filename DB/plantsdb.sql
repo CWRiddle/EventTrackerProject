@@ -59,6 +59,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 START TRANSACTION;
 USE `plantsdb`;
 INSERT INTO `plant` (`id`, `name`, `max_temperature`, `min_temperature`, `max_grow_height_inches`, `min_grow_height_inches`, `max_days_to_harvest`, `min_days_to_harvest`, `max_inches_water_per_week`, `min_inches_water_per_week`, `max_root_depth_inches`, `min_root_depth_inches`, `max_soil_ph`, `min_soil_ph`, `max_hours_sunlight`, `min_hours_sunlight`, `max_inches_plant_distance`, `min_inches_plant_distance`) VALUES (1, 'Broccoli', 75, 65, 48, 18, 100, 80, 1.5, 1, 20, 13, 7.0, 6.0, 10, 8, 24, 12);
+INSERT INTO `plant` (`id`, `name`, `max_temperature`, `min_temperature`, `max_grow_height_inches`, `min_grow_height_inches`, `max_days_to_harvest`, `min_days_to_harvest`, `max_inches_water_per_week`, `min_inches_water_per_week`, `max_root_depth_inches`, `min_root_depth_inches`, `max_soil_ph`, `min_soil_ph`, `max_hours_sunlight`, `min_hours_sunlight`, `max_inches_plant_distance`, `min_inches_plant_distance`) VALUES (2, 'Cabbage', 65, 60, 14, 12, 180, 80, 1.5, 1, 36, 18, 6.8, 6.5, 8, 6, 24, 12);
 
 COMMIT;
 
