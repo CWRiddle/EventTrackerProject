@@ -2,6 +2,8 @@ package com.skilldistillery.plants.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,12 +30,16 @@ public class PlantController {
 	}
 	
 	@GetMapping(path="plants/{id}")
-	public Plant findById(@PathVariable int id) {
-		return pService.findById(id);
+	public Plant findById(@PathVariable int id, HttpServletResponse resp) {
+		Plant plant = pService.findById(id);
+		if(plant == null) {
+			resp.setStatus(404);
+		}
+		return plant;
 	}
 	
 	@PostMapping(path="plants")
-	public Plant create(@RequestBody Plant plant) {
+	public Plant create(@RequestBody Plant plant, HttpServletResponse resp) {
 		return pService.create(plant);
 	}
 	

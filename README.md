@@ -23,7 +23,7 @@ The user will have the ability to save generated greenhouse blueprints for later
 |GET | `/api/plants/{id}` | Plant id | Single plant entity
 |POST | `/api/plants` | Plant |Plant that was just added
 |PUT | `/api/plants` | Plant | Plant that was updated
-|DELETE | `/api/plants` | |Boolean (True if deleted)
+|DELETE | `/api/plants/{id}` | |Boolean (True if deleted)
 
 ## Database Schema
 ![Pic of DB Schema](https://i.imgur.com/FKU2QwQ.png)

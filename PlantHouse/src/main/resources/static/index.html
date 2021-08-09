@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Plant House</title>
+<script src="js/script.js"></script>
+</head>
+<body>
+<h1>House your plants. Plant House.</h1>
+
+<div id="plantList">
+    <table id="plantListTable">
+
+    </table>
+</div>
+
+<button name="showAllPlants">Show all plants</button>
+
+<form name="findPlantForm">
+    Find Plant by ID: <input type="number" name="plantId"/>
+    <button name="findPlantButton">Find plant</button>
+</form>
+
+<div id="plantData"></div>
+
+<form name="addPlantForm">
+    <h3 name="formTitle">Add a plant: </h3>
+    Name: <input type="text" name="name"/><br>
+    Max Temp: <input type="number" name="maxTemp"/><br>
+    Min Temp: <input type="number" name="minTemp"/><br>
+    Max Height: <input type="number" name="maxHeight"/><br>
+    Min Height: <input type="number" name="minHeight"/><br>
+    Max Harvest Days: <input type="number" name="maxHarvestDays"/><br>
+    Min Harvest Days: <input type="number" name="minHarvestDays"/><br>
+    Max Inches Water Per Week: <input type="number" name="maxWater"/><br>
+    Min Inches Water Per Week: <input type="number" name="minWater"/><br>
+    Max Root Depth: <input type="number" name="maxRootDepth"/><br>
+    Min Root Depth: <input type="number" name="minRootDepth"/><br>
+    Max Soil Ph: <input type="number" name="maxSoilPh"/><br>
+    Min Soil Ph: <input type="number" name="minSoilPh"/><br>
+    Max Sunlight Hours: <input type="number" name="maxSunlightHours"/><br>
+    Min Sunlight Hours: <input type="number" name="minSunlightHours"/><br>
+    Max Plant Distance: <input type="number" name="maxPlantDistance"/><br>
+    Min Plant Distance: <input type="number" name="minPlantDistance"/><br>
+    <button name="addPlant">Add plant</button>
+</form>
+
+<div id='errors'></div>
+<div id='details'></div>
+
+
+
+</body>
+</html>
