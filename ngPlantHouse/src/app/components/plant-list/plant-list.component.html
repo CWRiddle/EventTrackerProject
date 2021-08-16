@@ -1,0 +1,70 @@
+
+
+<table border=1>
+  <thead>
+    <th>Name</th>
+    <th>Temp</th>
+    <th>Height</th>
+    <th>Harvest Days</th>
+    <th>Water</th>
+    <th>Root Depth</th>
+    <th>Soil PH</th>
+    <th>Sunlight</th>
+    <th>Plant Distance</th>
+  </thead>
+  <tbody>
+    <tr *ngFor="let plant of plants">
+      <td>{{plant.name}}</td>
+      <td>{{plant.minTemp}} - {{plant.maxTemp}}</td>
+      <td>{{plant.minHeight}} - {{plant.maxHeight}}</td>
+      <td>{{plant.minHarvestDays}} - {{plant.maxHarvestDays}}</td>
+      <td>{{plant.minInchesWaterPerWeek}} - {{plant.maxInchesWaterPerWeek}}</td>
+      <td>{{plant.minRootDepth}} - {{plant.maxRootDepth}}</td>
+      <td>{{plant.minSoilPh}} - {{plant.maxSoilPh}}</td>
+      <td>{{plant.minSunlightHours}} - {{plant.maxSunlightHours}}</td>
+      <td>{{plant.minPlantDistance}} - {{plant.maxPlantDistance}}</td>
+      <td><button (click)="editPlantInfo(plant)">Update</button></td>
+      <td><button (click)="deletePlant(plant.id)">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+
+<div *ngIf="editPlant == null">
+  <h3>Add Plant: </h3>
+  Name: <input type="text" [(ngModel)]="newPlant.name"/><br>
+  Temp: Max - <input type="number" [(ngModel)]="newPlant.maxTemp"/>
+  Min - <input type="number" [(ngModel)]="newPlant.minTemp"/><br>
+  Height: Max - <input type="number" [(ngModel)]="newPlant.maxHeight"/>
+  Min - <input type="number" [(ngModel)]="newPlant.minHeight"/><br>
+  Days To Harvest: Max - <input type="number" [(ngModel)]="newPlant.maxHarvestDays"/>
+  Min - <input type="number" [(ngModel)]="newPlant.minHarvestDays"/><br>
+  Water: Max - <input type="number" [(ngModel)]="newPlant.maxInchesWaterPerWeek"/>
+  Min - <input type="number" [(ngModel)]="newPlant.minInchesWaterPerWeek"/><br>
+  Root Depth: Max - <input type="number" [(ngModel)]="newPlant.maxRootDepth"/>
+  Min - <input type="number" [(ngModel)]="newPlant.minRootDepth"/><br>
+  Sunlight: Max - <input type="number" [(ngModel)]="newPlant.maxSunlightHours"/>
+  Min - <input type="number" [(ngModel)]="newPlant.minSunlightHours"/><br>
+  Plant Distance: Max - <input type="number" [(ngModel)]="newPlant.maxPlantDistance"/>
+  Min - <input type="number" [(ngModel)]="newPlant.minPlantDistance"/><br>
+  <button name="submit" (click)="addPlant()">Add Plant</button>
+</div>
+
+<div *ngIf="editPlant != null">
+  <h3>Edit Plant: </h3>
+  Name: <input type="text" [(ngModel)]="editPlant.name"/><br>
+  Temp: Max - <input type="number" [(ngModel)]="editPlant.maxTemp"/>
+  Min - <input type="number" [(ngModel)]="editPlant.minTemp"/><br>
+  Height: Max - <input type="number" [(ngModel)]="editPlant.maxHeight"/>
+  Min - <input type="number" [(ngModel)]="editPlant.minHeight"/><br>
+  Days To Harvest: Max - <input type="number" [(ngModel)]="editPlant.maxHarvestDays"/>
+  Min - <input type="number" [(ngModel)]="editPlant.minHarvestDays"/><br>
+  Water: Max - <input type="number" [(ngModel)]="editPlant.maxInchesWaterPerWeek"/>
+  Min - <input type="number" [(ngModel)]="editPlant.minInchesWaterPerWeek"/><br>
+  Root Depth: Max - <input type="number" [(ngModel)]="editPlant.maxRootDepth"/>
+  Min - <input type="number" [(ngModel)]="editPlant.minRootDepth"/><br>
+  Sunlight: Max - <input type="number" [(ngModel)]="editPlant.maxSunlightHours"/>
+  Min - <input type="number" [(ngModel)]="editPlant.minSunlightHours"/><br>
+  Plant Distance: Max - <input type="number" [(ngModel)]="editPlant.maxPlantDistance"/>
+  Min - <input type="number" [(ngModel)]="editPlant.minPlantDistance"/><br>
+  <button name="submit" (click)="updatePlant(editPlant)">Update Plant</button>
+</div>

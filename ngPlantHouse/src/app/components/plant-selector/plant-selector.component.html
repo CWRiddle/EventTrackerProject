@@ -1,0 +1,78 @@
+<p>plant-selector works!</p>
+
+
+<div class="container">
+  <div class="row">
+<!-- ////////////// Available Plants to Add Section /////////////// -->
+
+    <div class = "col-sm">
+      <div *ngIf="detailPlant == null">
+        <table border=1>
+          <thead>
+            <th>Select</th>
+            <th>Name</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let plant of plants">
+              <td><input type="checkbox" [(ngModel)]="plant.selected" (click)="selectedPlants(plant)"/></td>
+              <td (click)="plantDetails(plant)">{{plant.name}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+<!-- ////////////// Selected Plants Section /////////////// -->
+
+    <div class = "col-sm">
+      <div *ngIf="detailPlant == null">
+        <table>
+          <thead>
+            <th>Name</th>
+            <th>Amount</th>
+          </thead>
+          <tbody>
+            <tr *ngFor="let chosenPlant of chosenPlants">
+              <td>{{chosenPlant.plant.name}}</td>
+              <td><input type=number [(ngModel)]="chosenPlant.amount"/></td>
+            </tr>
+          </tbody>
+        </table>
+        <button [routerLink]="['/resultsPage']" (click)="calculate()">Calculate</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ////////////// Single Plant Details Section /////////////// -->
+
+<div *ngIf="detailPlant != null">
+  <table border=1>
+    <thead>
+      <th>Name</th>
+      <th>Temp</th>
+      <th>Height</th>
+      <th>Harvest Days</th>
+      <th>Water</th>
+      <th>Root Depth</th>
+      <th>Soil PH</th>
+      <th>Sunlight</th>
+      <th>Plant Distance</th>
+    </thead>
+    <tbody>
+      <tr>
+        <td>{{detailPlant.name}}</td>
+        <td>{{detailPlant.minTemp}} - {{detailPlant.maxTemp}}</td>
+        <td>{{detailPlant.minHeight}} - {{detailPlant.maxHeight}}</td>
+        <td>{{detailPlant.minHarvestDays}} - {{detailPlant.maxHarvestDays}}</td>
+        <td>{{detailPlant.minInchesWaterPerWeek}} - {{detailPlant.maxInchesWaterPerWeek}}</td>
+        <td>{{detailPlant.minRootDepth}} - {{detailPlant.maxRootDepth}}</td>
+        <td>{{detailPlant.minSoilPh}} - {{detailPlant.maxSoilPh}}</td>
+        <td>{{detailPlant.minSunlightHours}} - {{detailPlant.maxSunlightHours}}</td>
+        <td>{{detailPlant.minPlantDistance}} - {{detailPlant.maxPlantDistance}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <button (click)="resetDetailPlant()">Back</button>
+</div>
+
+

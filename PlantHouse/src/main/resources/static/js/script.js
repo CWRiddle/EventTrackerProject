@@ -163,50 +163,113 @@ function loadPlants(){
 }
 
 function displayPlants(plants){
+	let tableTitles = ['Name', 'Temp', 'Height', 'Harvest Days', 'Water', 'Root Depth', 'Soil PH', 'Sunlight', 'Plant Distance'];
+
 	let table = document.getElementById('plantListTable');
 
 	let thead = document.createElement('thead');
 	let tr = document.createElement('tr');
-	for(var p in plants[0]){
+	for(var t in tableTitles){
 		let th = document.createElement('th');
-		th.textContent = p;
+		th.textContent = tableTitles[t];
 		tr.appendChild(th);
 	}
 	thead.appendChild(tr);
 	table.appendChild(thead);
+
+	// for(var p in plants[0]){
+	// 	let th = document.createElement('th');
+	// 	th.textContent = p;
+	// 	tr.appendChild(th);
+	// }
+	// thead.appendChild(tr);
+	// table.appendChild(thead);
 	
 	let tbody = document.createElement('tbody');
 	for (const plant of plants) {
 		let tr = document.createElement('tr');
 		console.log(plant.length);
-		for(var p in plant){
-			let td = document.createElement('td');
-			td.textContent = plant[p];
-			tr.appendChild(td);
-		}
-		// let td = document.createElement('td');
-		// td.textContent = 'delete';
+		//for(var p in plant){
+			// let td = document.createElement('td');
+			// td.textContent = plant[p];
+			// tr.appendChild(td);
 
+			let td = document.createElement('td');
+			td.textContent = plant.name;
+			tr.appendChild(td);
+
+			td = document.createElement('td');
+			td.textContent = plant.minTemp + ' - ' + plant.maxTemp;
+			tr.appendChild(td);
+
+			td = document.createElement('td');
+			td.textContent = plant.minHeight + ' - ' + plant.maxHeight;
+			tr.appendChild(td);
+
+			td = document.createElement('td');
+			td.textContent = plant.minHarvestDays + ' - ' + plant.maxHarvestDays;
+			tr.appendChild(td);
+
+			td = document.createElement('td');
+			td.textContent = plant.minInchesWaterPerWeek + ' - ' + plant.maxInchesWaterPerWeek;
+			tr.appendChild(td);
+
+			td = document.createElement('td');
+			td.textContent = plant.minRootDepth + ' - ' + plant.maxRootDepth;
+			tr.appendChild(td);
+
+			td = document.createElement('td');
+			td.textContent = plant.minSoilPh + ' - ' + plant.maxSoilPh;
+			tr.appendChild(td);
+
+			td = document.createElement('td');
+			td.textContent = plant.minSunlightHours + ' - ' + plant.maxSunlightHours;
+			tr.appendChild(td);
+
+			td = document.createElement('td');
+			td.textContent = plant.minPlantDistance + ' - ' + plant.maxPlantDistance;
+			tr.appendChild(td);
+
+		//}
+
+		//DELETE BUTTON START
 		let deleteButton = document.createElement('button');
 		deleteButton.value = plant.id;
 		deleteButton.innerHTML = 'delete';
 		deleteButton.addEventListener('click', function(e){
 			deletePlant(deleteButton.value);
 		});
-		let td = document.createElement('td');
+		//let td = document.createElement('td');
+		td = document.createElement('td');
 		td.appendChild(deleteButton);
 		tr.appendChild(td);
+		//DELETE BUTTON END
 
+		//UPDATE BUTTON START
 		let updateButton = document.createElement('button');
-		updateButton.value = plant.id;
+		updateButton.value = plant;
 		updateButton.innerHTML = 'update';
 		updateButton.addEventListener('click', function(e){
+
+			e.preventDefault();
+			//console.log("parent element: " + e.target.parentElement);
+			// let plant = {
+			// 	//id: e.target.parentElement.id.value,
+			// 	name: e.target.parentElement.name.value
+			// };
+			let formTitle = document.getElementById('formTitle');
+			formTitle.textContent='Update Plant';
+			let formButton = document.getElementById('formButton');
+			formButton.textContent = 'Update';
+			updateForm(plant);
 			//updateForm(updateButton.value);
-			updatePlant(updateButton.value);
+			//updatePlant(updateButton.value);
+
 		});
 		td = document.createElement('td');
 		td.appendChild(updateButton);
 		tr.appendChild(td);
+		//UPDATE BUTTON END
 
 		tbody.appendChild(tr);
 	}
@@ -284,8 +347,9 @@ function getPlant(plantId){
 			if(xhr.status === 200){
 				//let plant = JSON.parse(xhr.responseText);
 				plant = JSON.parse(xhr.responseText);
+				console.log("PLANT: " + plant.name);
 				displayPlant(plant);
-				return plant;
+				//return plant;
 			}
 			else{
 				displayError('Plant not found');
@@ -295,7 +359,7 @@ function getPlant(plantId){
 	xhr.send();
 	console.log('in get plant before return');
 	console.log('Plant name: ' + plant);
-	return plant;
+	//return plant;
 }
 
 function displayPlant(plant) {
@@ -385,33 +449,38 @@ function deletePlant(plantId){
 	xhr.send();
 }
 
-function updatePlant(plantId){
-	let xhr = new XMLHttpRequest();
-	xhr.open('PUT', 'api/plants');
-	xhr.onreadystatechange = function(){
-		if(xhr.readystate === 4){
-			// if(xhr.status === 201)
-			if(xhr.status < 400){
-				let newPlant = JSON.parse(xhr.responseText);
-				//can display plant here
-			}
-			else{
-				displayError('Error updating plant ' + xhr.status);
-			}
-		}
-	};
-	xhr.setRequestHeader("Content-type", "application/json");
-	let plantJson = JSON.stringify(plant);
-	xhr.send(plantJson);
-}
+// function updatePlant(plantId){
+// 	let xhr = new XMLHttpRequest();
+// 	xhr.open('PUT', 'api/plants');
+// 	xhr.onreadystatechange = function(){
+// 		if(xhr.readystate === 4){
+// 			// if(xhr.status === 201)
+// 			if(xhr.status < 400){
+// 				let newPlant = JSON.parse(xhr.responseText);
+// 				//can display plant here
+// 			}
+// 			else{
+// 				displayError('Error updating plant ' + xhr.status);
+// 			}
+// 		}
+// 	};
+// 	xhr.setRequestHeader("Content-type", "application/json");
+// 	let plantJson = JSON.stringify(plant);
+// 	xhr.send(plantJson);
+// }
 
-function updateForm(plantId){
-	let plant = getPlant(plantId);
+function updateForm(plant){
+	
+	//let plant = getPlant(plantId);
+	console.log('Plant: ' + plant);
 
 	let fm = document.addPlantForm;
 	console.log("plant: " + plant);
 	//TODO: Change title of form field here:
 	// fm.formTitle.innerHTML = 'Update Plant: ';
+
+	//fm.name.value = 'test name';
+
 	fm.name.value = plant.name;
 	fm.maxTemp.value = plant.maxTemp;
 	fm.minTemp.value = plant.minTemp;
@@ -419,8 +488,8 @@ function updateForm(plantId){
 	fm.minHeight.value = plant.minHeight;
 	fm.maxHarvestDays.value = plant.maxHarvestDays;
 	fm.minHarvestDays.value = plant.minHarvestDays;
-	fm.maxWater.value = plant.maxWater;
-	fm.minWater.value = plant.minWater;
+	fm.maxWater.value = plant.maxInchesWaterPerWeek;
+	fm.minWater.value = plant.minInchesWaterPerWeek;
 	fm.maxRootDepth.value = plant.maxRootDepth;
 	fm.minRootDepth.value = plant.minRootDepth;
 	fm.maxSoilPh.value = plant.maxSoilPh;
@@ -430,4 +499,6 @@ function updateForm(plantId){
 	fm.maxPlantDistance.value = plant.maxPlantDistance;
 	fm.minPlantDistance.value = plant.minPlantDistance;
 	//fm.
+
+	
 }
